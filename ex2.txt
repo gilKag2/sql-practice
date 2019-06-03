@@ -1,0 +1,122 @@
+1) SELECT DISTINCT "actor-name" FROM Salaries WHERE age<30 AND salary>2.7;
+2) SELECT "series-name","release-year","genre" FROM Seasons NATURAL JOIN Genres WHERE "release-year"=2016 AND genre='Sci-Fi';
+4) SELECT DISTINCT "actor-name" FROM Actors WHERE "series-name" IN(SELECT "series-name" FROM Actors WHERE "actor-name"='Corbero') AND "actor-name"!='Corbero';
+5) SELECT DISTINCT "actor-name","series-name",salary FROM Actors LEFT JOIN Salaries USING("actor-name");
+
+:סעיף ה
+1)SELECT DISTINCT "actor-name", age + 1, salary * 2 FROM Salaries;
+2)SELECT "actor-name", age FROM Salaries WHERE age BETWEEN 30 AND 40;
+3)SELECT "series-name", language FROM Genres WHERE language LIKE 'E_';
+4)SELECT "series-name" FROM Seasons WHERE "series-name" NOT LIKE '%\%%';
+5)SELECT *  FROM Salaries ORDER BY salary ASC, "actor-name" DESC;
+6)SELECT AVG(age) FROM Actors NATURAL JOIN Salaries WHERE "series-name"='How I Met Your Mother';
+7)SELECT genre, COUNT("series-name") FROM Genres GROUP BY genre;
+
+
+
+Results:
+1)actor-name:Langfors, Rose.
+2)series-name:Stranger Things, 3%	
+ release-year:  2016, 	      2016
+	    genre:	Sci-Fi, 	  Sci-Fi
+4)actor-name: Ituno, Morte
+
+5)actor-name	series-name  		  salary
+  Camparato	      3%	      		   0.8
+  Corbero	    Money Heist    		    1 
+  Cranston	    Breaking Bad   		    3
+  Eido	        Fauda	      		   null
+  Garty	        Fauda	      		   0.7
+ Halevi	        Fauda	      		   null
+ Hannigan	    How I Met Your Mother   5
+ Ituno	        Money Heist			   null
+ Langford	    13 Reasons Why			3
+ Minnette	    13 Reasons Why		   2.6
+ Morte	        Money Heist			   1.2
+ Patrick-Harris	How I Met Your Mother	5
+ Raz	        Fauda					1
+ Rose	        Chambers			   2.8
+ Ryder	        Stranger Things		   3.5
+ Segel	        How I Met Your Mother   5
+ Thurman	    Chambers	           null
+
+סעיף ה:
+1)actor-name	age + 1	   salary * 2
+  Camparato	      35	      1.6
+  Corbero	      31	       2
+  Cranston	      64		   6
+  Garty	          40	      1.4
+  Hannigan	      46		   10
+  Langford	      24	       6
+  Minnette	      24	      5.2
+  Morte	          45	      2.4
+  Patrick-Harris  47	       10 
+  Raz	          49	       2
+  Roiland	      40	       4
+  Rose	          21	       5.6
+  Ryder	          49	       7
+  Segel	          40	       10
+		
+2)actor-name	age
+  Segel	        39
+  Roiland	    39
+  Corbero	    30
+  Camparato	    34
+  Garty	        39
+
+
+3)
+series-name				language
+How I Met Your Mother	EN
+Chambers				EN
+Stranger Things			EN
+Breaking Bad			EN
+Rick & Morty			EN
+Money Heist				ES
+13 Reasons Why			EN
+
+4)
+series-name
+13 Reasons Why
+3%
+Breaking Bad
+Chambers
+Dogs Of Berlin
+Fauda
+How I Met Your Mother
+Money Heist
+Rick & Morty
+Stranger Things
+
+5)
+actor-name	   age	salary
+Garty		   39	 0.7
+Camparato	   34	 0.8
+Raz			   48	  1
+Corbero		   30	  1
+Morte		   44	 1.2
+Roiland		   39	  2 
+Minnette	   23	 2.6
+Rose		   20	 2.8
+Langford	   23	  3
+Cranston	   63	  3
+Ryder		   48	 3.5
+Segel		   39	  5
+Patrick-Harris 46	  5
+Hannigan	   45	  5
+
+6) 
+AVG(age)
+43.333333333333336
+
+7)
+genre	COUNT("series-name")
+Action	     2
+Animation	 1
+Comedy	     1
+Crime		 2
+Drama		 1
+Horror		 1
+Sci-Fi		 2
+
+		
